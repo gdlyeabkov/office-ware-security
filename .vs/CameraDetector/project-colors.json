@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "eea7cb49-56f5-48a2-aa34-2d143e005982": {
+      "ProjectGuid": "eea7cb49-56f5-48a2-aa34-2d143e005982",
+      "DisplayName": "CameraDetector",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
