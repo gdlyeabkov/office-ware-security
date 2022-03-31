@@ -49,12 +49,36 @@ namespace CameraDetector
         public static extern IntPtr SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, uint uFlags);
 
         public void Attach() {
-            deviceHandle = capCreateCaptureWindow(string.Empty, WS_VISIBLE | WS_CHILD, 0, 0, (int)this.ActualWidth, (int)this.ActualHeight, new WindowInteropHelper(this).Handle, 0);
+            deviceHandle = capCreateCaptureWindow(string.Empty, WS_VISIBLE | WS_CHILD, 50, 50, 350, 350, new WindowInteropHelper(this).Handle, 0);
+            IntPtr secondDeviceHandle = capCreateCaptureWindow(string.Empty, WS_VISIBLE | WS_CHILD, 750, 50, 350, 350, new WindowInteropHelper(this).Handle, 0);
+            IntPtr thirdDeviceHandle = capCreateCaptureWindow(string.Empty, WS_VISIBLE | WS_CHILD, 50, 500, 350, 350, new WindowInteropHelper(this).Handle, 0);
+            IntPtr fourthDeviceHandle = capCreateCaptureWindow(string.Empty, WS_VISIBLE | WS_CHILD, 750, 500, 350, 350, new WindowInteropHelper(this).Handle, 0);
             if (SendMessage(deviceHandle, WM_CAP_DRIVER_CONNECT, (IntPtr)0, (IntPtr)0).ToInt32() > 0) {
                 SendMessage(deviceHandle, WM_CAP_SET_SCALE, (IntPtr)(-1), (IntPtr)0);
                 SendMessage(deviceHandle, WM_CAP_SET_PREVIEWRATE, (IntPtr)0x42, (IntPtr)0);
                 SendMessage(deviceHandle, WM_CAP_SET_PREVIEW, (IntPtr)(-1), (IntPtr)0);
-                SetWindowPos(deviceHandle, new IntPtr(0), 0, 0, (int)this.ActualWidth, (int)this.ActualHeight, 6);
+                SetWindowPos(deviceHandle, new IntPtr(0), 50, 50, 350, 350, 6);
+            }
+            if (SendMessage(secondDeviceHandle, WM_CAP_DRIVER_CONNECT, (IntPtr)0, (IntPtr)0).ToInt32() > 0)
+            {
+                SendMessage(secondDeviceHandle, WM_CAP_SET_SCALE, (IntPtr)(-1), (IntPtr)0);
+                SendMessage(secondDeviceHandle, WM_CAP_SET_PREVIEWRATE, (IntPtr)0x42, (IntPtr)0);
+                SendMessage(secondDeviceHandle, WM_CAP_SET_PREVIEW, (IntPtr)(-1), (IntPtr)0);
+                SetWindowPos(secondDeviceHandle, new IntPtr(0), 500, 50, 350, 350, 6);
+            }
+            if (SendMessage(thirdDeviceHandle, WM_CAP_DRIVER_CONNECT, (IntPtr)0, (IntPtr)0).ToInt32() > 0)
+            {
+                SendMessage(thirdDeviceHandle, WM_CAP_SET_SCALE, (IntPtr)(-1), (IntPtr)0);
+                SendMessage(thirdDeviceHandle, WM_CAP_SET_PREVIEWRATE, (IntPtr)0x42, (IntPtr)0);
+                SendMessage(thirdDeviceHandle, WM_CAP_SET_PREVIEW, (IntPtr)(-1), (IntPtr)0);
+                SetWindowPos(thirdDeviceHandle, new IntPtr(0), 50, 500, 350, 350, 6);
+            }
+            if (SendMessage(fourthDeviceHandle, WM_CAP_DRIVER_CONNECT, (IntPtr)0, (IntPtr)0).ToInt32() > 0)
+            {
+                SendMessage(fourthDeviceHandle, WM_CAP_SET_SCALE, (IntPtr)(-1), (IntPtr)0);
+                SendMessage(fourthDeviceHandle, WM_CAP_SET_PREVIEWRATE, (IntPtr)0x42, (IntPtr)0);
+                SendMessage(fourthDeviceHandle, WM_CAP_SET_PREVIEW, (IntPtr)(-1), (IntPtr)0);
+                SetWindowPos(fourthDeviceHandle, new IntPtr(0), 500, 500, 350, 350, 6);
             }
         }
 

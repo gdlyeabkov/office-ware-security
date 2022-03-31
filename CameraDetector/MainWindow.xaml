@@ -9,6 +9,7 @@
         Height="450"
         Width="800"
         WindowState="Maximized"
+        Background="SlateGray"
         Loaded="Window_Loaded"
     >
     <Grid>
